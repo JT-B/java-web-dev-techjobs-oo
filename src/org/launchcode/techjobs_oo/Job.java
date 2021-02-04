@@ -34,6 +34,35 @@ public class Job {
     //  match.
 
     @Override
+    public String toString() {
+        String response = "";
+        Location dataNot = new Location("Data not Available");
+        if ((this.name == null) && (this.employer == null) && (this.location == null) && (this.positionType == null) && (this.coreCompetency == null)) {
+            response = "OOPS! This job does not seem to exist.";
+        } /*else if (this.name == null) {
+            this.setName("Data not Available");
+        } else if (this.employer == null) {
+            this.setEmployer(new Employer("Data not Available"));
+        } else if (this.location == null) {
+            this.setLocation(dataNot);
+        } else if (this.positionType == null) {
+
+        } else if (this.coreCompetency == null) {
+
+        }*/ else {
+            response = "     " + "\n" +
+                    "ID: " + this.getId() + "\n" +
+                    "Name: " + this.getName() + "\n" +
+                    "Employer: " + this.getEmployer() + "\n" +
+                    "Location: " + this.getLocation() + "\n" +
+                    "Position Type: " + this.getPositionType() + "\n" +
+                    "Core Competency: " + this.getCoreCompetency() + "\n" +
+                    "     ";
+        }
+      return response;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Job)) return false;

@@ -13,6 +13,7 @@ public class JobTest {
     Job testJobTwo;
     Job testJobFullConstructor;
     Job testJobForEqualityTest;
+    Job testJobForEmptyField;
 
     @Before
     public void createJobObject() {
@@ -20,6 +21,7 @@ public class JobTest {
         testJobTwo = new Job();
         testJobFullConstructor = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         testJobForEqualityTest = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        testJobForEmptyField = new Job("", new Employer("ACME"), new Location(), new PositionType("Quality control"), new CoreCompetency("Persistence"));
     }
 
     @Test
@@ -40,6 +42,34 @@ public class JobTest {
     @Test
     public void testJobsForEquality() {
         assertFalse(testJobFullConstructor.equals(testJobForEqualityTest));
+    }
+
+    @Test
+    public void testJobForBlankLine() {
+        assertTrue(testJobFullConstructor.toString().startsWith("     "));
+        assertTrue(testJobFullConstructor.toString().endsWith("     "));
+    }
+
+    @Test
+    public void testJobForLabelAndData() {
+        assertTrue(testJobFullConstructor.toString().contains("ID: 13" + "\n"));
+        assertTrue(testJobFullConstructor.toString().contains("Name: Product tester" + "\n"));
+        assertTrue(testJobFullConstructor.toString().contains("Employer: ACME" + "\n"));
+        assertTrue(testJobFullConstructor.toString().contains("Location: Desert" + "\n"));
+        assertTrue(testJobFullConstructor.toString().contains("Position Type: Quality control" + "\n"));
+        assertTrue(testJobFullConstructor.toString().contains("Core Competency: Persistence" + "\n"));
+    }
+
+//    @Test
+//    public void testJobForResponseToEmptyField() {
+//        System.out.println(testJobForEmptyField.toString());
+//        assertTrue(testJobForEmptyField.toString().contains("Name; Data not available"));
+//        assertTrue(testJobForEmptyField.toString().contains("Location: Data not available"));
+//    }
+
+    @Test
+    public void testJobForResp0nseToOnlyID() {
+        assertTrue(testJobOne.toString().contains("OOPS! This job does not seem to exist."));
     }
 
 
