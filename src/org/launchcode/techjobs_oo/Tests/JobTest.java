@@ -21,7 +21,7 @@ public class JobTest {
         testJobTwo = new Job();
         testJobFullConstructor = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         testJobForEqualityTest = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        testJobForEmptyField = new Job("", new Employer("ACME"), new Location(), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        testJobForEmptyField = new Job("", new Employer(""), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
     }
 
     @Test
@@ -60,12 +60,12 @@ public class JobTest {
         assertTrue(testJobFullConstructor.toString().contains("Core Competency: Persistence" + "\n"));
     }
 
-//    @Test
-//    public void testJobForResponseToEmptyField() {
-//        System.out.println(testJobForEmptyField.toString());
-//        assertTrue(testJobForEmptyField.toString().contains("Name; Data not available"));
-//        assertTrue(testJobForEmptyField.toString().contains("Location: Data not available"));
-//    }
+    @Test
+    public void testJobForResponseToEmptyField() {
+        assertTrue(testJobForEmptyField.toString().contains("Name: Data not available"));
+        assertTrue(testJobForEmptyField.toString().contains("Employer: Data not available"));
+        assertTrue(testJobForEmptyField.toString().contains("Location: Data not available"));
+    }
 
     @Test
     public void testJobForResp0nseToOnlyID() {

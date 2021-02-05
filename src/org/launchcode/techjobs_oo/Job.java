@@ -36,21 +36,13 @@ public class Job {
     @Override
     public String toString() {
         String response = "";
-        Location dataNot = new Location("Data not Available");
-        if ((this.name == null) && (this.employer == null) && (this.location == null) && (this.positionType == null) && (this.coreCompetency == null)) {
+          if ((this.name == null) && (this.employer == null) && (this.location == null) && (this.positionType == null) && (this.coreCompetency == null)) {
             response = "OOPS! This job does not seem to exist.";
-        } /*else if (this.name == null) {
-            this.setName("Data not Available");
-        } else if (this.employer == null) {
-            this.setEmployer(new Employer("Data not Available"));
-        } else if (this.location == null) {
-            this.setLocation(dataNot);
-        } else if (this.positionType == null) {
-
-        } else if (this.coreCompetency == null) {
-
-        }*/ else {
-            response = "     " + "\n" +
+            return response;
+        } if (this.name.equals("")) {
+            this.setName("Data not available");
+        }
+          response = "     " + "\n" +
                     "ID: " + this.getId() + "\n" +
                     "Name: " + this.getName() + "\n" +
                     "Employer: " + this.getEmployer() + "\n" +
@@ -58,7 +50,7 @@ public class Job {
                     "Position Type: " + this.getPositionType() + "\n" +
                     "Core Competency: " + this.getCoreCompetency() + "\n" +
                     "     ";
-        }
+
       return response;
     }
 
